@@ -49,5 +49,4 @@ class BackwardArrayItTest {
         assertThatThrownBy(it::next)
                 .isInstanceOf(NoSuchElementException.class);
     }
-
 }
