@@ -111,4 +111,5 @@ class MatrixItTest  {
         assertThat(it.next()).isEqualTo(8);
         assertThat(it.hasNext()).isFalse();
     }
+
 }
