@@ -11,15 +11,11 @@ public class EvenNumbersIterator implements Iterator<Integer> {
         this.data = data;
     }
 
-    private void skipOdd() {
+    @Override
+    public boolean hasNext() {
         while (index < data.length && data[index] % 2 != 0) {
             index++;
         }
-    }
-
-    @Override
-    public boolean hasNext() {
-        skipOdd();
         return index < data.length;
     }
 
