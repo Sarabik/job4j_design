@@ -21,10 +21,10 @@ class SimpleLinkedListTest {
 
     @Test
     void checkIteratorSimple() {
-        //assertThat(list).hasSize(2);
+        assertThat(list).hasSize(2);
         list.add(3);
         list.add(4);
-        //assertThat(list).hasSize(4);
+        assertThat(list).hasSize(4);
     }
 
     @Test
