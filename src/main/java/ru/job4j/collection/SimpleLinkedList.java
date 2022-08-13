@@ -52,14 +52,13 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
         return new Iterator<E>() {
             private int expectedModCount = modCount;
             private Node<E> itElement = head;
-            private boolean firstIteration;
 
             @Override
             public boolean hasNext() {
                 if (expectedModCount != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                return size != 0 && itElement.next != null;
+                return itElement != null;
             }
 
             @Override
@@ -67,12 +66,9 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
                 if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
-                if (itElement == head && !firstIteration) {
-                    firstIteration = true;
-                } else {
-                    itElement = itElement.next;
-                }
-                return itElement.item;
+                Node<E> result = itElement;
+                itElement = itElement.next;
+                return result.item;
             }
         };
     }
