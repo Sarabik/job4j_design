@@ -22,4 +22,5 @@ public class Analize {
                 changed,
                 previous.size() - changed - remaining);
     }
+
 }
