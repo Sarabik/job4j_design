@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class MatrixOut {
@@ -22,7 +23,7 @@ public class MatrixOut {
                 out.write(line.substring(1, line.length() - 1).getBytes());
                 out.write(System.lineSeparator().getBytes());
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
