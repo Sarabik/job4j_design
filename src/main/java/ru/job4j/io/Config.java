@@ -20,14 +20,12 @@ public class Config {
         try (BufferedReader reader = new BufferedReader(new FileReader(this.path))) {
             for (String str = reader.readLine(); str != null; str = reader.readLine()) {
                 str = str.trim();
-                int ind = -1;
                 if (!str.startsWith("#") && !str.isBlank()) {
-                    ind = str.indexOf("=");
-                    if (ind > 0 && ind < (str.length() - 1)) {
-                        values.put(str.substring(0, ind).trim(), str.substring(ind + 1).trim());
-                    } else {
-                        throw new IllegalArgumentException("Line \"" +  str + "\" does not match the required pattern");
+                    int ind = str.indexOf("=");
+                    if (ind < 1 || ind >= str.length() - 1) {
+                        throw new IllegalArgumentException(String.format("Line \"%s\" does not match the required pattern", str));
                     }
+                    values.put(str.substring(0, ind).trim(), str.substring(ind + 1).trim());
                 }
 
             }
