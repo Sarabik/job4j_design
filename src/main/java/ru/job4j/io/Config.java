@@ -54,4 +54,5 @@ public class Config {
        config.load();
        config.values.forEach((key, value) -> System.out.println("ключ: " + key + ", значение: " + value));
     }
+
 }

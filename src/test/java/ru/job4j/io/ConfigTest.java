@@ -10,7 +10,7 @@ class ConfigTest {
         String path = "./data/pair_without_comment.properties";
         Config config = new Config(path);
         config.load();
-        /*assertThat(config.value("key1")).isEqualTo(null);*/
+        assertThat(config.value("key1")).isEqualTo(null);
         assertThat(config.value("key2")).isEqualTo(null);
         assertThat(config.value("key3")).isEqualTo("value3");
         assertThat(config.value("key4")).isEqualTo("value4=v2");
