@@ -14,7 +14,6 @@ public class ArgsName {
                     String.format("Argument \"%s\" does not exist", key));
         }
         return value;
-
     }
 
     private void parse(String[] args) {

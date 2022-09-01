@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 
 class ArgsNameTest {
+
     @Test
     void whenGetFirst() {
         ArgsName jvm = ArgsName.of(new String[] {"-Xmx=512", "-encoding=UTF-8"});
@@ -37,18 +38,18 @@ class ArgsNameTest {
     @Test
     void whenThereIsNoKey() {
         assertThatThrownBy(() -> ArgsName.of(new String[] {"-=UTF-8"}))
-                .isInstanceOf(IllegalArgumentException.class);;
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void whenThereIsNoEqualsSymbol() {
         assertThatThrownBy(() -> ArgsName.of(new String[] {"-encoding:UTF-8"}))
-                .isInstanceOf(IllegalArgumentException.class);;
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void whenThereIsNoDashSymbol() {
         assertThatThrownBy(() -> ArgsName.of(new String[] {"encoding:UTF-8"}))
-                .isInstanceOf(IllegalArgumentException.class);;
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
