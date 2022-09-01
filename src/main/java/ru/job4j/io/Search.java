@@ -24,8 +24,9 @@ public class Search {
         if (args.length != 2) {
             throw new IllegalArgumentException("Two arguments are needed: root folder and file extension");
         }
-        if (args[0].charAt(1) != ':') {
-            throw new IllegalArgumentException("Root folder should be absolute and start with disk name (example: C:\\folder");
+        Path path = Path.of(args[0]);
+        if (!Files.exists(path) && !Files.isDirectory(path)) {
+            throw new IllegalArgumentException("Root folder does not exist");
         }
         if (!args[1].startsWith(".")) {
             throw new IllegalArgumentException("File extension should start with point");
