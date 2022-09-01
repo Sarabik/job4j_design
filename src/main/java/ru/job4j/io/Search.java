@@ -21,8 +21,14 @@ public class Search {
     }
 
     public static void validation(String[] args) {
-        if (args.length < 2) {
+        if (args.length != 2) {
             throw new IllegalArgumentException("Two arguments are needed: root folder and file extension");
+        }
+        if (args[0].charAt(1) != ':') {
+            throw new IllegalArgumentException("Root folder should be absolute and start with disk name (example: C:\\folder");
+        }
+        if (!args[1].startsWith(".")) {
+            throw new IllegalArgumentException("File extension should start with point");
         }
     }
 }
