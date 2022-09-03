@@ -26,30 +26,48 @@ class ArgsNameTest {
     @Test
     void whenGetNotExist() {
         ArgsName jvm = ArgsName.of(new String[] {"-Xmx=512"});
-        assertThatThrownBy(() -> jvm.get("Xms")).isInstanceOf(IllegalArgumentException.class);
+        String argKey = "Xms";
+        assertThatThrownBy(() -> jvm.get(argKey))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Argument \"%s\" does not exist", argKey);
     }
 
     @Test
     void whenWrongSomeArgument() {
         assertThatThrownBy(() -> ArgsName.of(new String[]{}))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("There are no arguments");
     }
 
     @Test
     void whenThereIsNoKey() {
-        assertThatThrownBy(() -> ArgsName.of(new String[] {"-=UTF-8"}))
-                .isInstanceOf(IllegalArgumentException.class);
+        String arg = "-=UTF-8";
+        assertThatThrownBy(() -> ArgsName.of(new String[] {arg}))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Argument \"%s\" should match the required pattern \"-key=value\"", arg);
+    }
+
+    @Test
+    void whenThereIsNoValue() {
+        String arg = "-encoding=";
+        assertThatThrownBy(() -> ArgsName.of(new String[] {arg}))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Argument \"%s\" should match the required pattern \"-key=value\"", arg);
     }
 
     @Test
     void whenThereIsNoEqualsSymbol() {
-        assertThatThrownBy(() -> ArgsName.of(new String[] {"-encoding:UTF-8"}))
-                .isInstanceOf(IllegalArgumentException.class);
+        String arg = "-encoding:UTF-8";
+        assertThatThrownBy(() -> ArgsName.of(new String[] {arg}))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Argument \"%s\" should match the required pattern \"-key=value\"", arg);
     }
 
     @Test
     void whenThereIsNoDashSymbol() {
-        assertThatThrownBy(() -> ArgsName.of(new String[] {"encoding:UTF-8"}))
-                .isInstanceOf(IllegalArgumentException.class);
+        String arg = "encoding=UTF-8";
+        assertThatThrownBy(() -> ArgsName.of(new String[] {arg}))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Argument \"%s\" should start with \"-\" symbol", arg);
     }
 }
