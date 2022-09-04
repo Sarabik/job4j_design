@@ -20,9 +20,6 @@ public class Zip {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (Path file : sources) {
-            packSingleFile(file.toFile(), target);
-        }
     }
 
     public void packSingleFile(File source, File target) {
