@@ -44,7 +44,7 @@ public class ConsoleChat {
                     }
             }
         }
-        while (!userPhrase.equals(OUT));
+        while (!OUT.equals(userPhrase));
         saveLog(log);
     }
 
