@@ -19,5 +19,10 @@ public class UsageLog4j {
         LOG.debug("Anton: weight - {} kg, height - {} cm. He lives on {} floor.", weight, height, floor);
         LOG.debug("Adress: Salnas str. {}/{} - {}. Distance from Moscow = {} km", house, section, flat, distance);
         LOG.debug("Info = {}", isTrue);
+        try {
+            throw new Exception("Not supported code");
+        } catch (Exception e) {
+            LOG.error("Exception in log example", e);
+        }
     }
 }
