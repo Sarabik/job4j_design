@@ -1,10 +1,14 @@
 package ru.job4j.io;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class EchoServer {
+    private static final Logger LOG = LoggerFactory.getLogger(EchoServer.class.getName());
+
     public static void main(String[] args) throws IOException {
         try (ServerSocket server = new ServerSocket(9000)) {
             while (!server.isClosed()) {
@@ -22,8 +26,13 @@ public class EchoServer {
                         out.write(msg.getBytes());
                     }
                     out.flush();
+                } catch (IOException e) {
+                    LOG.error("Error while opening input or output stream", e);
                 }
             }
+        } catch (IOException e) {
+            LOG.error("Error while opening server socket", e);
         }
+
     }
 }
