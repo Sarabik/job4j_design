@@ -13,7 +13,6 @@ public class Address {
         this.house = house;
     }
 
-
     public String getCity() {
         return city;
     }
@@ -25,7 +24,6 @@ public class Address {
     public int getHouse() {
         return house;
     }
-
 
     @Override
     public boolean equals(Object o) {

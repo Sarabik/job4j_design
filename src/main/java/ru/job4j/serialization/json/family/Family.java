@@ -10,7 +10,6 @@ public class Family {
     private Address address;
     private boolean hasPet;
 
-
     public Family(String surname, String[] names, Address address, boolean hasPet) {
         this.surname = surname;
         this.names = names;
@@ -18,7 +17,6 @@ public class Family {
         this.address = address;
         this.hasPet = hasPet;
     }
-
 
     @Override
     public boolean equals(Object o) {

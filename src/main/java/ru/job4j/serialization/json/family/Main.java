@@ -9,6 +9,7 @@ public class Main {
                 new String[]{"Ivan", "Olga", "Lisa"},
                 new Address("Moscow", "Markova", 52),
                 true);
+
         /*serialization*/
         final Gson familyGson = new GsonBuilder().create();
         String familyGsonString = familyGson.toJson(family);
