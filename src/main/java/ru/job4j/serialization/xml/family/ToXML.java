@@ -1,4 +1,4 @@
-package ru.job4j.serialization.json.family;
+package ru.job4j.serialization.xml.family;
 
 import java.io.FileWriter;
 import java.io.IOException;
