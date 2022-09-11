@@ -3,7 +3,7 @@ package ru.job4j.serialization.json.family;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class Main {
+public class ToJSON {
     public static void main(String[] args) {
         Family family = new Family("Ivanovi",
                 new String[]{"Ivan", "Olga", "Lisa"},
