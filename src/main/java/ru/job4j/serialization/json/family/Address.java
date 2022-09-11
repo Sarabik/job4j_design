@@ -3,9 +3,9 @@ package ru.job4j.serialization.json.family;
 import java.util.Objects;
 
 public class Address {
-    String city;
-    String street;
-    int house;
+    private String city;
+    private String street;
+    private int house;
 
     public Address(String city, String street, int house) {
         this.city = city;
