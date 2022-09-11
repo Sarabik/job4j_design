@@ -36,7 +36,7 @@ public class ToXML {
         }
         joiner.add("\t</names>");
         joiner.add(String.format("\t<address city=\"%s\" street=\"%s\" house=\"%d\"/>",
-                family.getAddress().city,
+                family.getAddress().getCity(),
                 family.getAddress().getStreet(),
                 family.getAddress().getHouse()));
         joiner.add("</family>");
