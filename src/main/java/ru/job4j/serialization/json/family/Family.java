@@ -18,6 +18,26 @@ public class Family {
         this.hasPet = hasPet;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
+    public String[] getNames() {
+        return names;
+    }
+
+    public int getMembersCount() {
+        return membersCount;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public boolean isHasPet() {
+        return hasPet;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -27,7 +47,11 @@ public class Family {
             return false;
         }
         Family family = (Family) o;
-        return membersCount == family.membersCount && hasPet == family.hasPet && Objects.equals(surname, family.surname) && Arrays.equals(names, family.names) && Objects.equals(address, family.address);
+        return membersCount == family.membersCount
+                && hasPet == family.hasPet
+                && Objects.equals(surname, family.surname)
+                && Arrays.equals(names, family.names)
+                && Objects.equals(address, family.address);
     }
 
     @Override
