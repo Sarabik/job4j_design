@@ -1,0 +1,9 @@
+<?xml version="1.1" encoding="UTF-8" ?>
+<family surname="Ivanovi" membersCount="3" hasPet="true">
+	<names>
+		<names>"Ivan"</names>
+		<names>"Olga"</names>
+		<names>"Lisa"</names>
+	</names>
+	<address city="Moscow" street="Markova" house="52"/>
+</family>
