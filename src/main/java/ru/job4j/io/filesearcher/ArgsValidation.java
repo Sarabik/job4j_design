@@ -65,7 +65,7 @@ public class ArgsValidation {
                 break;
             default:
                 String s = System.lineSeparator();
-                throw new IllegalArgumentException(String.format("\"%s\" - irrelevant argument type. "
+                throw new IllegalArgumentException(String.format("-\"%s\" - irrelevant argument type. "
                         + "It should be one of the following:" + s
                         + "-d search directory" + s
                         + "-n file name" + s

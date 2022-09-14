@@ -24,7 +24,6 @@ public class SearchType {
         int maskCounter = 0;
         int starIndex = -1;
         boolean result = false;
-
         while (fileCounter < fileArray.length && maskCounter < maskArray.length) {
             if (maskArray[maskCounter] == '*') {
                 starIndex = maskCounter;

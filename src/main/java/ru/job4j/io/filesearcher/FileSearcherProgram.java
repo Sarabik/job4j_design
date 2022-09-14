@@ -13,15 +13,8 @@ public class FileSearcherProgram {
         String searchType = argsValidation.getArgValue("t");
         String outputFile = argsValidation.getArgValue("o");
 
-        System.out.println(directory);
-        System.out.println(fileName);
-        System.out.println(searchType);
-        System.out.println(outputFile);
-
         Predicate<Path> condition = SearchType.getCondition(fileName, searchType);
         List<Path> pathList = Search.search(Path.of(directory), condition);
-
-        pathList.forEach(System.out::println);
 
         try (PrintWriter outWriter = new PrintWriter(
                 new BufferedOutputStream(
