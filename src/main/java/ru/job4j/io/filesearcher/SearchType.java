@@ -28,6 +28,9 @@ public class SearchType {
             if (maskArray[maskCounter] == '*') {
                 starIndex = maskCounter;
                 maskCounter++;
+                if (maskCounter == maskArray.length) {
+                    fileCounter = fileArray.length;
+                }
             } else if (maskArray[maskCounter] == '?' || maskArray[maskCounter] == fileArray[fileCounter]) {
                 result = true;
                 maskCounter++;
@@ -44,6 +47,6 @@ public class SearchType {
                 result = false;
             }
         }
-        return result;
+        return result && (fileCounter == fileArray.length && maskCounter == maskArray.length);
     }
 }
