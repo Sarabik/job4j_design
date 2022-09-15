@@ -21,7 +21,7 @@ public class SearchType {
         StringBuilder builder = new StringBuilder();
         for (char ch : fileMask.toCharArray()) {
             String stringRegex = switch (ch) {
-                case '.' -> "\\.";
+                case '.' -> "[.]";
                 case '?' -> ".";
                 case '*' -> ".*";
                 default -> Character.toString(ch);
