@@ -14,9 +14,6 @@ CREATE TABLE product (
 INSERT INTO type(name)
 VALUES ('СЫР'), ('МОЛОКО'), ('ЙОГУРТ'), ('МОРОЖЕННОЕ');
 
-SELECT * FROM type;
-SELECT * FROM product;
-
 INSERT INTO product(name, type_id, expired_date, price) 
 VALUES ('Голандский сыр', 1, date '2022-11-03', 350.10),
 ('Сыр Гауда', 1, date '2022-08-03', 420.50),
