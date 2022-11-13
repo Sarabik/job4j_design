@@ -1,0 +1,4 @@
+.\data\pairs_with_comment.properties
+.\data\pair_without_comment.properties
+.\data\without_key_comment.properties
+.\data\without_value_comment.properties
