@@ -41,7 +41,7 @@ class ConfigTest {
 
     @Test
     void whenApp() {
-        String path = "./data/app.properties";
+        String path = "./data/appold.properties";
         Config config = new Config(path);
         config.load();
         assertThat(config.value("hibernate.connection.url"))
