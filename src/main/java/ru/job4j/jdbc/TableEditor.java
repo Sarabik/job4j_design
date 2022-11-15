@@ -115,19 +115,20 @@ public class TableEditor implements AutoCloseable {
     }
 
     public static void main(String[] args) throws Exception {
-        TableEditor tableEditor = new TableEditor(getProperties("table_editor.properties"));
-        String table = "table1";
-        tableEditor.createTable(table);
-        tableEditor.addColumn(table, "names", "text");
-        tableEditor.addColumn(table, "surnames", "text");
-        tableEditor.addColumn(table, "age", "int");
-        System.out.println(tableEditor.getTableScheme(table));
-        tableEditor.renameColumn(table, "age", "weight");
-        System.out.println(tableEditor.getTableScheme(table));
-        tableEditor.dropColumn(table, "names");
-        System.out.println(tableEditor.getTableScheme(table));
-        tableEditor.dropTable(table);
-        tableEditor.createTable(table);
-        System.out.println(tableEditor.getTableScheme(table));
+        try (TableEditor tableEditor = new TableEditor(getProperties("table_editor.properties"))) {
+            String table = "table1";
+            tableEditor.createTable(table);
+            tableEditor.addColumn(table, "names", "text");
+            tableEditor.addColumn(table, "surnames", "text");
+            tableEditor.addColumn(table, "age", "int");
+            System.out.println(tableEditor.getTableScheme(table));
+            tableEditor.renameColumn(table, "age", "weight");
+            System.out.println(tableEditor.getTableScheme(table));
+            tableEditor.dropColumn(table, "names");
+            System.out.println(tableEditor.getTableScheme(table));
+            tableEditor.dropTable(table);
+            tableEditor.createTable(table);
+            System.out.println(tableEditor.getTableScheme(table));
+        }
     }
 }
