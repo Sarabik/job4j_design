@@ -16,11 +16,23 @@ public class ImportDB {
         this.dump = dump;
     }
 
+    private void validate(String str) {
+        if (!str.matches("^.*;.*@.*\\..*;$")) {
+            throw new IllegalArgumentException(
+                    String.format("line \"%s\" does not match required pattern", str));
+        }
+    }
+
     public List<User> load() throws IOException {
         List<User> users = new ArrayList<>();
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines().forEach(str -> {
+                validate(str);
                 String[] array = str.split(";");
+                if (array.length != 2) {
+                    throw new IllegalArgumentException(
+                            String.format("line \"%s\" does not match required pattern", str));
+                }
                 User user = new User(array[0], array[1]);
                 users.add(user);
             });
@@ -37,7 +49,7 @@ public class ImportDB {
         )) {
             /* create table users */
             try (Statement st = cnt.createStatement()) {
-                st.executeUpdate(String.format("CREATE TABLE users (%s, %s, %s);",
+                st.executeUpdate(String.format("CREATE TABLE if not exists users (%s, %s, %s);",
                         "id serial primary key", "name varchar(255)", "email varchar(255)"));
             }
             /* save data to table users */
