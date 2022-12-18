@@ -32,18 +32,12 @@ where p.company_id != 5
 order by p.name;
 
 /* Second task */
-select company.name, max_people.people_count
-from
-	(select company_id, count(company_id) as people_count
-	from person
-	group by company_id
-	having count(company_id) =
-		(select count(company_id) as people_count
-		from person
-		group by company_id
-		order by people_count desc
-		limit 1))
-		as max_people
-join company
-on company.id = max_people.company_id
-order by company.name;
+select company.name, count(*)
+from person, company
+where person.company_id = company.id
+group by person.company_id, company.name
+having count(*) =
+	(select count(company_id)
+	 from person
+	 group by company_id
+	 limit 1);
