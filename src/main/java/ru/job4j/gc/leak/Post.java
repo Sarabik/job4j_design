@@ -1,6 +1,7 @@
 package ru.job4j.gc.leak;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Post {
 
@@ -32,15 +33,27 @@ public class Post {
     /*остальные getter/setter*/
 
     @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-    }
-
-    @Override
     public String toString() {
         return "Post{"
                 + "id=" + id
                 + ", text='" + text + '\''
                 + ", comments=" + comments + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Post post = (Post) o;
+        return id.equals(post.id) && text.equals(post.text) && comments.equals(post.comments);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, text, comments);
     }
 }
