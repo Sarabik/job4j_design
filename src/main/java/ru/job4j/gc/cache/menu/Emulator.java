@@ -4,6 +4,7 @@ package ru.job4j.gc.cache.menu;
 import ru.job4j.gc.cache.AbstractCache;
 import ru.job4j.gc.cache.DirFileCache;
 
+import java.io.File;
 import java.util.Scanner;
 
 public class Emulator {
@@ -16,7 +17,9 @@ public class Emulator {
                 Введите любое другое число для выхода.
             """;
     public static final String FILE_ASK = "Укажите название файла";
-    public static final String FILE_READ = "Содержание файла: ";
+    public static final String FILE_READ = "Содержание файла:";
+    public static final int CHOOSE_FILE = 1;
+    public static final int CHANGE_DIRECTORY = 2;
 
     void menu(Scanner scanner) {
         boolean run = true;
@@ -25,22 +28,26 @@ public class Emulator {
             String directory = scanner.nextLine();
             if ("q".equals(directory)) {
                 run = false;
+            } else if (!(new File(directory).isDirectory())) {
+                System.out.println("Ошибка: указанная директория не существует");
+                continue;
             }
-            /* проверка директории */
             AbstractCache<String, String> cache = new DirFileCache(directory);
             while (run) {
-                System.out.println(DIRECTORY_PATH);
+                System.out.println(System.lineSeparator() + DIRECTORY_PATH);
                 System.out.println(directory);
                 System.out.println(MENU_DIR);
                 int userChoice = Integer.parseInt(scanner.nextLine());
-                if (userChoice == 1) {
+                if (userChoice == CHOOSE_FILE) {
                     System.out.println(FILE_ASK);
                     String fileName = scanner.nextLine();
-                    /* проверка файла */
-                    /*String text = cache.load(fileName);
+                    if (!(new File(directory + "\\" + fileName).isFile())) {
+                        System.out.println("Ошибка: указанный файл не существует");
+                        continue;
+                    }
                     System.out.println(FILE_READ);
-                    System.out.println(text);*/
-                } else if (userChoice == 2) {
+                    System.out.println(cache.get(fileName));
+                } else if (userChoice == CHANGE_DIRECTORY) {
                     break;
                 } else {
                     run = false;
@@ -49,12 +56,9 @@ public class Emulator {
         }
     }
 
-
-
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Emulator emulator = new Emulator();
         emulator.menu(scanner);
-
     }
 }
