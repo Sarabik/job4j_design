@@ -1,37 +1,39 @@
 package ru.job4j.kiss;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 class MaxMinTest {
 
-    private List<Integer> list;
-    private Comparator<Integer> comparator;
+    private static List<Integer> list;
+    private static Comparator<Integer> comparator;
+    private static MaxMin test;
 
-    @BeforeEach
-    void init() {
-        list = new ArrayList<>(List.of(3, 76, 22, 9, 21, 17));
+    @BeforeAll
+    static void init() {
+        test = new MaxMin();
         comparator = Comparator.naturalOrder();
+        list = new ArrayList<>(List.of(3, 76, 22, 9, 21, 17));
     }
 
     @Test
     public void whenMax() {
-        MaxMin test1 = new MaxMin();
-        assertThat(test1.max(list, comparator)).isEqualTo(76);
+        assertThat(test.max(list, comparator)).isEqualTo(76);
     }
 
     @Test
     public void whenMin() {
-        MaxMin test2 = new MaxMin();
-        assertThat(test2.min(list, comparator)).isEqualTo(3);
+        assertThat(test.min(list, comparator)).isEqualTo(3);
+    }
+
+    @Test
+    public void whenEmptyList() {
+        List<Integer> emptyList = new ArrayList<>();
+        assertThat(test.min(emptyList, comparator)).isEqualTo(null);
     }
 }
