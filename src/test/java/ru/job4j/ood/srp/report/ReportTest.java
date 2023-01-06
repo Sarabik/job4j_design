@@ -44,7 +44,7 @@ public class ReportTest {
         Currency currSource = Currency.RUB;
         Currency currTarget = Currency.EUR;
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
-        Report engine = new ReportAccountsDep(store, parser, currSource, currTarget);
+        Report engine = new ReportAccountsDep(store, parser, currSource, currTarget, currencyConverter);
         StringBuilder expect = new StringBuilder()
                 .append("Name; Hired; Fired; Salary;")
                 .append(System.lineSeparator())
@@ -64,8 +64,7 @@ public class ReportTest {
         Employee worker2 = new Employee("Tom", now, now, 80);
         store.add(worker1);
         store.add(worker2);
-        DateTimeParser<Calendar> parser = new ReportDateTimeParser();
-        Report engine = new ReportHRDep(store, parser);
+        Report engine = new ReportHRDep(store);
         StringBuilder expect = new StringBuilder()
                 .append("Name; Salary;")
                 .append(System.lineSeparator())

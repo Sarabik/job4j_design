@@ -13,11 +13,10 @@ import java.util.function.Predicate;
 public class ReportHRDep implements Report {
 
     private final Store store;
-    private final DateTimeParser<Calendar> dateTimeParser;
+    private final Comparator<Employee> comparator = Comparator.comparingDouble(Employee::getSalary).reversed();
 
-    public ReportHRDep(MemStore store, DateTimeParser<Calendar> dateTimeParser) {
+    public ReportHRDep(Store store) {
         this.store = store;
-        this.dateTimeParser = dateTimeParser;
     }
 
     @Override
@@ -26,7 +25,7 @@ public class ReportHRDep implements Report {
         text.append("Name; Salary;")
                 .append(System.lineSeparator());
         List<Employee> sortedStore = store.findBy(filter);
-        sortedStore.sort(Comparator.comparingDouble(Employee::getSalary).reversed());
+        sortedStore.sort(comparator);
         for (Employee employee : sortedStore) {
             text.append(employee.getName()).append(" ")
                     .append(employee.getSalary())
