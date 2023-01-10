@@ -110,7 +110,7 @@ public class ReportTest {
         Employee worker1 = new Employee("Ivan", now, now, 100);
         store.add(worker1);
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
-        Report engine = new ReportJSON(store, parser);
+        Report engine = new JsonReport(store, parser);
         StringBuilder expect = new StringBuilder()
                 .append(String.format("[{\"fired\":\"%s\",", parser.parse(worker1.getHired())))
                 .append(String.format("\"name\":\"%s\",", worker1.getName()))
@@ -120,20 +120,27 @@ public class ReportTest {
     }
 
     @Test
-    public void whenXMLReportGenerated() {
+    public void whenXmlReportGenerated() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker = new Employee("Ivan", now, now, 100);
         DateTimeParser<Calendar> parser = new ReportDateTimeParser();
         store.add(worker);
-        Report engine = new ReportXML(store);
+        Report engine = null;
+        try {
+            engine = new XmlReport(store);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         String s = System.lineSeparator();
         StringBuilder expect = new StringBuilder()
                 .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>").append(s)
-                .append(String.format("<model name=\"%s\">", worker.getName())).append(s)
+                .append("<model>").append(s)
+                .append(String.format("<list name=\"%s\">", worker.getName())).append(s)
                 .append(String.format("<hired>%s</hired>", parser.parse(worker.getHired()))).append(s)
                 .append(String.format("<fired>%s</fired>", parser.parse(worker.getFired()))).append(s)
                 .append(String.format("<salary>%s</salary>", worker.getSalary())).append(s)
+                .append("</list>").append(s)
                 .append("</model>").append(s);
         assertThat(engine.generate(em -> true)).isEqualToIgnoringWhitespace(expect.toString());
     }

@@ -9,12 +9,12 @@ import ru.job4j.ood.srp.store.Store;
 import java.util.Calendar;
 import java.util.function.Predicate;
 
-public class ReportJSON implements Report {
+public class JsonReport implements Report {
 
     private final Store store;
     private final DateTimeParser<Calendar> dateTimeParser;
 
-    public ReportJSON(Store store, DateTimeParser<Calendar> dateTimeParser) {
+    public JsonReport(Store store, DateTimeParser<Calendar> dateTimeParser) {
         this.store = store;
         this.dateTimeParser = dateTimeParser;
     }
