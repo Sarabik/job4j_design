@@ -13,7 +13,7 @@ import java.util.function.Predicate;
 public class ReportHRDep implements Report {
 
     private final Store store;
-    private final Comparator<Employee> comparator = Comparator.comparingDouble(Employee::getSalary).reversed();
+    private static final Comparator<Employee> COMPARATOR = Comparator.comparingDouble(Employee::getSalary).reversed();
 
     public ReportHRDep(Store store) {
         this.store = store;
@@ -25,7 +25,7 @@ public class ReportHRDep implements Report {
         text.append("Name; Salary;")
                 .append(System.lineSeparator());
         List<Employee> sortedStore = store.findBy(filter);
-        sortedStore.sort(comparator);
+        sortedStore.sort(COMPARATOR);
         for (Employee employee : sortedStore) {
             text.append(employee.getName()).append(" ")
                     .append(employee.getSalary())
