@@ -12,14 +12,14 @@ import java.time.LocalDate;
 import static org.assertj.core.api.Assertions.*;
 
 class WarehouseTest {
-    private static final LocalDate today = LocalDate.now();
+    private static final LocalDate TODAY = LocalDate.now();
     private final ExpirationCalculator<LocalDate> expirationCalculator = new LocalDateExpirationCalculator();
 
     @Test
     public void whenSuccessfullyAddToWarehouse() {
         Store warehouse = new Warehouse(expirationCalculator);
-        Product shampoo = new Cosmetics("Shampoo", today.minusDays(15),
-                today.plusDays(526), 30, 350.50);
+        Product shampoo = new Cosmetics("Shampoo", TODAY.minusDays(15),
+                TODAY.plusDays(526), 30, 350.50);
         boolean ifAdded = warehouse.add(shampoo);
         assertThat(ifAdded).isTrue();
         assertThat(warehouse.getAll()).contains(shampoo);
@@ -28,8 +28,8 @@ class WarehouseTest {
     @Test
     public void whenFailedAddToWarehouse() {
         Store warehouse = new Warehouse(expirationCalculator);
-        Product bread = new Food("Bread", today.minusDays(1),
-                today.plusDays(2), 15, 45.00);
+        Product bread = new Food("Bread", TODAY.minusDays(1),
+                TODAY.plusDays(2), 15, 45.00);
         boolean ifAdded = warehouse.add(bread);
         assertThat(ifAdded).isFalse();
         assertThat(warehouse.getAll()).isNullOrEmpty();
