@@ -3,7 +3,7 @@ package ru.job4j.ood.lsp.foodstorage.products;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Product {
+public abstract class Product {
     private String name;
     private LocalDate createDate;
     private LocalDate expiryDate;

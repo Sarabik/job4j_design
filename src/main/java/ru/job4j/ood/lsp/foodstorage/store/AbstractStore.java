@@ -2,13 +2,14 @@ package ru.job4j.ood.lsp.foodstorage.store;
 
 import ru.job4j.ood.lsp.foodstorage.products.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractStore implements Store {
-    List<Product> products;
+    List<Product> products = new ArrayList<>();
 
     @Override
     public List<Product> getAll() {
-        return products;
+        return new ArrayList<>(products);
     }
 }

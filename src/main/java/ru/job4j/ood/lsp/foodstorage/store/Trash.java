@@ -1,20 +1,23 @@
 package ru.job4j.ood.lsp.foodstorage.store;
 
 import ru.job4j.ood.lsp.foodstorage.products.Product;
+import ru.job4j.ood.lsp.foodstorage.quality.ExpirationCalculator;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 public class Trash extends AbstractStore {
+    private final ExpirationCalculator<LocalDate> expirationCalculator;
     private static final double TRASH_MIN = 100d;
     private static final Predicate<Double> TRASH_ADD = q -> q >= TRASH_MIN;
 
-    public Trash() {
-        this.products = new ArrayList<>();
+    public Trash(ExpirationCalculator<LocalDate> expirationCalculator) {
+        this.expirationCalculator = expirationCalculator;
     }
 
     @Override
-    public boolean add(Product product, double quality) {
-        return TRASH_ADD.test(quality) && products.add(product);
+    public boolean add(Product product) {
+        return TRASH_ADD.test(expirationCalculator.calculate(product.getCreateDate(), product.getExpiryDate()))
+                && products.add(product);
     }
 }

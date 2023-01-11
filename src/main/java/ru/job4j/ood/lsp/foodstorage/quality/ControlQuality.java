@@ -6,13 +6,16 @@ import ru.job4j.ood.lsp.foodstorage.store.Store;
 import ru.job4j.ood.lsp.foodstorage.store.Trash;
 import ru.job4j.ood.lsp.foodstorage.store.Warehouse;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class ControlQuality {
-    private final Store warehouse = new Warehouse();
-    private final Store shop = new Shop();
-    private final Store trash = new Trash();
+    private final ExpirationCalculator<LocalDate> expirationCalculator = new LocalDateExpirationCalculator();
+    private final Store warehouse = new Warehouse(expirationCalculator);
+    private final Store shop = new Shop(expirationCalculator);
+    private final Store trash = new Trash(expirationCalculator);
     private final List<Store> storages;
 
     public ControlQuality() {
@@ -20,21 +23,20 @@ public class ControlQuality {
     }
 
     public List<Product> getWarehouseProducts() {
-        return warehouse.getAll();
+        return new ArrayList<>(warehouse.getAll());
     }
 
     public List<Product> getShopProducts() {
-        return shop.getAll();
+        return new ArrayList<>(shop.getAll());
     }
 
     public List<Product> getTrashProducts() {
-        return trash.getAll();
+        return new ArrayList<>(trash.getAll());
     }
 
     public void sendToStorage(Product product) {
-        double quality = QualityPercent.getQualityPercent(product);
         for (Store store : storages) {
-            if (store.add(product, quality)) {
+            if (store.add(product)) {
                 break;
             }
         }

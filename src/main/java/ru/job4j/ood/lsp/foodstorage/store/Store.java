@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface Store {
 
-    boolean add(Product product, double quality);
+    boolean add(Product product);
     List<Product> getAll();
 }
