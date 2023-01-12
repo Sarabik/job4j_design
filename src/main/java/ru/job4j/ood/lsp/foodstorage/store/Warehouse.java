@@ -16,9 +16,8 @@ public class Warehouse extends AbstractStore {
     }
 
     @Override
-    public boolean add(Product product) {
+    protected boolean isFresh(Product product) {
         return ADD_WAREHOUSE.test(
-                expirationCalculator.calculate(product.getCreateDate(), product.getExpiryDate()))
-                && products.add(product);
+                expirationCalculator.calculate(product.getCreateDate(), product.getExpiryDate()));
     }
 }

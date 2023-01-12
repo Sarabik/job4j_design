@@ -16,8 +16,7 @@ public class Trash extends AbstractStore {
     }
 
     @Override
-    public boolean add(Product product) {
-        return TRASH_ADD.test(expirationCalculator.calculate(product.getCreateDate(), product.getExpiryDate()))
-                && products.add(product);
+    protected boolean isFresh(Product product) {
+        return TRASH_ADD.test(expirationCalculator.calculate(product.getCreateDate(), product.getExpiryDate()));
     }
 }
