@@ -11,14 +11,14 @@ import java.time.LocalDate;
 import static org.assertj.core.api.Assertions.*;
 
 class TrashTest {
-    private static final LocalDate TODAY = LocalDate.now();
+    private LocalDate today = LocalDate.now();
     private final ExpirationCalculator<LocalDate> expirationCalculator = new LocalDateExpirationCalculator();
 
     @Test
     public void whenSuccessfullyAddToTrash() {
         Store trash = new Trash(expirationCalculator);
-        Product butter = new Food("Butter", TODAY.minusDays(60),
-                TODAY.plusDays(-2), 7, 210.10);
+        Product butter = new Food("Butter", today.minusDays(60),
+                today.plusDays(-2), 7, 210.10);
         boolean ifAdded = trash.add(butter);
         assertThat(ifAdded).isTrue();
         assertThat(trash.getAll()).contains(butter);
@@ -27,8 +27,8 @@ class TrashTest {
     @Test
     public void whenFailedAddToTrash() {
         Store trash = new Trash(expirationCalculator);
-        Product bread = new Food("Bread", TODAY.minusDays(1),
-                TODAY.plusDays(2), 15, 45.00);
+        Product bread = new Food("Bread", today.minusDays(1),
+                today.plusDays(2), 15, 45.00);
         boolean ifAdded = trash.add(bread);
         assertThat(ifAdded).isFalse();
         assertThat(trash.getAll()).isNullOrEmpty();
