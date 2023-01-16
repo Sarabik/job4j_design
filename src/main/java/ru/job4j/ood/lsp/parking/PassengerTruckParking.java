@@ -1,9 +1,6 @@
 package ru.job4j.ood.lsp.parking;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 import java.util.function.Predicate;
 
 public class PassengerTruckParking implements Parking {
@@ -34,10 +31,13 @@ public class PassengerTruckParking implements Parking {
         }
         if (!ifAdded) {
             ifAdded = putVehicleToPassengersParking(vehicle, passengerPlaces);
-            System.out.println(String.format("Vehicle with number %s is added to Passenger parking",
-                            vehicle.getNumber()));
-            System.out.println(Arrays.toString(passengerPlaces));
-            System.out.println(System.lineSeparator());
+            if (ifAdded) {
+                System.out.println(String.format("Vehicle with number %s is added to Passenger parking",
+                        vehicle.getNumber()));
+                System.out.println(Arrays.toString(passengerPlaces));
+                System.out.println(System.lineSeparator());
+            }
+
         }
         if (!ifAdded) {
             System.out.printf("There is no place for this vehicle with number %s!", vehicle.getNumber());
@@ -79,13 +79,25 @@ public class PassengerTruckParking implements Parking {
         return result;
     }
 
+    @Override
+    public Set<Vehicle> get() {
+        Set<Vehicle> set = new HashSet<>(trackPlaces);
+        for (Vehicle vehicle : passengerPlaces) {
+            if (vehicle != null) {
+                set.add(vehicle);
+            }
+        }
+        return set;
+    }
+
     public static void main(String[] args) {
         Parking parking = new PassengerTruckParking(10, 2);
         parking.addVehicle(new PassengerCar("1"));
-        parking.addVehicle(new TruckCar("2", 2));
+        parking.addVehicle(new Truck("2", 2));
         parking.addVehicle(new PassengerCar("3"));
-        parking.addVehicle(new TruckCar("4", 2));
-        parking.addVehicle(new TruckCar("5", 3));
-        parking.addVehicle(new TruckCar("6", 2));
+        parking.addVehicle(new Truck("4", 2));
+        parking.addVehicle(new Truck("5", 3));
+        parking.addVehicle(new Truck("6", 2));
+        System.out.println(parking.get());
     }
 }
