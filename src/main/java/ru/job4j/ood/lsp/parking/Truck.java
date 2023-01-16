@@ -8,4 +8,5 @@ public class Truck extends Vehicle {
             throw new IllegalArgumentException("Truck size must be more than 1");
         }
     }
+
 }

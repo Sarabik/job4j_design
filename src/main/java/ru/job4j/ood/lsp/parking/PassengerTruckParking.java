@@ -100,4 +100,5 @@ public class PassengerTruckParking implements Parking {
         parking.addVehicle(new Truck("6", 2));
         System.out.println(parking.get());
     }
+
 }

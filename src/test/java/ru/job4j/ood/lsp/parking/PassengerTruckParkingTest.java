@@ -52,4 +52,5 @@ class PassengerTruckParkingTest {
         parking.addVehicle(truck1);
         assertThat(parking.get()).isEmpty();
     }
+
 }

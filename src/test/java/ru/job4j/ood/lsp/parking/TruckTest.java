@@ -11,4 +11,5 @@ class TruckTest {
                 isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Truck size must be more than 1");
     }
+
 }

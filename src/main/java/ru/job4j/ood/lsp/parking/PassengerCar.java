@@ -6,4 +6,5 @@ public class PassengerCar extends Vehicle {
     public PassengerCar(String number) {
         super(number, SIZE);
     }
+
 }
