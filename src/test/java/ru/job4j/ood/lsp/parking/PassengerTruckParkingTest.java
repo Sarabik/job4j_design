@@ -16,7 +16,7 @@ class PassengerTruckParkingTest {
         Vehicle car2 = new PassengerCar("2");
         parking.addVehicle(car1);
         parking.addVehicle(car2);
-        assertThat(parking.get()).containsExactlyInAnyOrder(car1, car2);
+        assertThat(parking.getAllVehicles()).containsExactlyInAnyOrder(car1, car2);
     }
 
     @Test
@@ -27,7 +27,7 @@ class PassengerTruckParkingTest {
         parking.addVehicle(truck1);
         parking.addVehicle(truck2);
         Set<Vehicle> set = new HashSet<>();
-        assertThat(parking.get()).containsExactlyInAnyOrder(truck1, truck2);
+        assertThat(parking.getAllVehicles()).containsExactlyInAnyOrder(truck1, truck2);
     }
 
     @Test
@@ -42,7 +42,7 @@ class PassengerTruckParkingTest {
         parking.addVehicle(car1);
         parking.addVehicle(car2);
 
-        assertThat(parking.get()).containsExactlyInAnyOrder(truck1, truck2, car1, car2);
+        assertThat(parking.getAllVehicles()).containsExactlyInAnyOrder(truck1, truck2, car1, car2);
     }
 
     @Test
@@ -50,7 +50,7 @@ class PassengerTruckParkingTest {
         Parking parking = new PassengerTruckParking(2, 0);
         Vehicle truck1 = new Truck("1", 3);
         parking.addVehicle(truck1);
-        assertThat(parking.get()).isEmpty();
+        assertThat(parking.getAllVehicles()).isEmpty();
     }
 
 }
