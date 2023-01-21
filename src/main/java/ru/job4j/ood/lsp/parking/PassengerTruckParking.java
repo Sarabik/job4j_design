@@ -11,13 +11,13 @@ public class PassengerTruckParking implements Parking {
     private int freePassengerCarPlaces;
 
     public PassengerTruckParking(int passengerPlaceCount, int truckPlaceCount) {
+        if (passengerPlaceCount < 0 || truckPlaceCount < 0) {
+            throw new IllegalArgumentException("Number of parking places can not be negative");
+        }
         this.passengerPlaces = new ArrayList<>();
         this.trackPlaces = new ArrayList<>();
         this.freeTrackPlaces = truckPlaceCount;
         this.freePassengerCarPlaces = passengerPlaceCount;
-        if (passengerPlaceCount < 0 || truckPlaceCount < 0) {
-            throw new IllegalArgumentException("Number of parking places can not be negative");
-        }
     }
 
     @Override
@@ -27,9 +27,8 @@ public class PassengerTruckParking implements Parking {
             ifAdded = trackPlaces.add(vehicle);
             freeTrackPlaces--;
         } else if (freePassengerCarPlaces >= vehicle.getSize()) {
-            for (int i = vehicle.getSize(); i > 0; i--) {
-                ifAdded = passengerPlaces.add(vehicle);
-            }
+            ifAdded = passengerPlaces.add(vehicle);
+            freePassengerCarPlaces -= vehicle.getSize();
         }
         return ifAdded;
     }
