@@ -3,6 +3,7 @@ package ru.job4j.ood.isp.menu;
 import java.util.Optional;
 
 public class DoAction implements UserAction {
+
     private final Output out;
 
     public DoAction(Output out) {

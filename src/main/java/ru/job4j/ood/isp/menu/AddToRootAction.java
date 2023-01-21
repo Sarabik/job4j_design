@@ -1,6 +1,7 @@
 package ru.job4j.ood.isp.menu;
 
 public class AddToRootAction implements UserAction {
+
     private final Output out;
 
     public AddToRootAction(Output out) {

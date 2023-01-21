@@ -9,5 +9,4 @@ public interface MenuItem {
     List<MenuItem> getChildren();
 
     ActionDelegate getActionDelegate();
-
 }

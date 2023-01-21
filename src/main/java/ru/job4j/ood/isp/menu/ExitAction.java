@@ -1,6 +1,7 @@
 package ru.job4j.ood.isp.menu;
 
 public class ExitAction implements UserAction {
+
     private final Output out;
 
     public ExitAction(Output out) {

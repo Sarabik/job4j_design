@@ -1,6 +1,7 @@
 package ru.job4j.ood.isp.menu;
 
 public class AddToParentAction implements UserAction {
+
     private final Output out;
 
     public AddToParentAction(Output out) {

@@ -1,6 +1,7 @@
 package ru.job4j.ood.isp.menu;
 
 public class ShowMenuAction implements UserAction {
+
     private final Output out;
 
     public ShowMenuAction(Output out) {

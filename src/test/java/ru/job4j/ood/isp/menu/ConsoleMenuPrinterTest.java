@@ -29,10 +29,10 @@ class ConsoleMenuPrinterTest {
         menu.add(Menu.ROOT, "Сходить в магазин", STUB_ACTION);
         menu.add("Сходить в магазин", "Купить продукты", STUB_ACTION);
         printer.print(menu);
-        String expected = "1.Сходить в магазин" +
-                System.lineSeparator() +
-                "----1.1.Купить продукты" +
-                System.lineSeparator();
+        String expected = "1.Сходить в магазин"
+                + System.lineSeparator()
+                + "----1.1.Купить продукты"
+                + System.lineSeparator();
         assertThat(expected).isEqualTo(output.toString());
     }
 

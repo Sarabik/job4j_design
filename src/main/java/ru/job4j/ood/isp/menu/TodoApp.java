@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TodoApp {
+
     private final Output output;
 
     public TodoApp(Output output) {

@@ -1,6 +1,7 @@
 package ru.job4j.ood.isp.menu;
 
 public class ConsoleMenuPrinter implements MenuPrinter {
+
     private static final String OFFSETS = "----";
 
     @Override

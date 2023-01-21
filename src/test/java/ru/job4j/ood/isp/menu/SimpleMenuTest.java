@@ -33,4 +33,5 @@ public class SimpleMenuTest {
 
         menu.forEach(i -> System.out.println(i.getNumber() + i.getName()));
     }
+
 }
