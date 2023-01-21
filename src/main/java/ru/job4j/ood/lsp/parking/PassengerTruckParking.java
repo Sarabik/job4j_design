@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.function.Predicate;
 
 public class PassengerTruckParking implements Parking {
+
     private List<Vehicle> passengerPlaces;
     private List<Vehicle> trackPlaces;
     private Predicate<Vehicle> ifTrack = v -> v.getSize() > 1;
