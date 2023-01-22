@@ -1,13 +1,14 @@
 package ru.job4j.ood.dip.mistakes;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Example1 {
+public class Example3 {
     public class StudentList {
-        ArrayList<Student> studList;
+        List<Student> studList;
 
-        public StudentList() {
-            this.studList = new ArrayList<>();
+        public StudentList(ArrayList<Student> list) {
+            this.studList = list;
         }
 
         /* методы */
