@@ -8,4 +8,5 @@ public interface Store {
 
     boolean add(Product product);
     List<Product> getAll();
+    void emptyStore();
 }

@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ControlQuality {
     private final ExpirationCalculator<LocalDate> expirationCalculator = new LocalDateExpirationCalculator();
@@ -40,5 +41,12 @@ public class ControlQuality {
                 break;
             }
         }
+    }
+
+    public void resort() {
+        List<Product> list = storages.stream()
+                .flatMap(store -> store.getAll().stream()).toList();
+        storages.forEach(Store::emptyStore);
+        list.forEach(this::sendToStorage);
     }
 }
