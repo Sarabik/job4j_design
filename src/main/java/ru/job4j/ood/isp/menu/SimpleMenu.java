@@ -12,9 +12,9 @@ public class SimpleMenu implements Menu {
         if (Objects.equals(parentName, Menu.ROOT)) {
             result = rootElements.add(new SimpleMenuItem(childName, actionDelegate));
         } else {
-            Optional<ItemInfo> itemInfoOptional = findItem(parentName);
-            if (itemInfoOptional.isPresent()) {
-                result = itemInfoOptional.get().menuItem.getChildren().add(new SimpleMenuItem(childName, actionDelegate));
+            if (findItem(childName).isEmpty() && findItem(parentName).isPresent()) {
+                result = findItem(parentName).get().menuItem.getChildren()
+                        .add(new SimpleMenuItem(childName, actionDelegate));
             }
         }
         return result;
@@ -22,13 +22,7 @@ public class SimpleMenu implements Menu {
 
     @Override
     public Optional<MenuItemInfo> select(String itemName) {
-        Optional<MenuItemInfo> menuItemInfoOptional = Optional.empty();
-        Optional<ItemInfo> itemInfoOptional = findItem(itemName);
-        if (itemInfoOptional.isPresent()) {
-            menuItemInfoOptional = Optional.of(
-                    new MenuItemInfo(itemInfoOptional.get().menuItem, itemInfoOptional.get().number));
-        }
-        return menuItemInfoOptional;
+        return findItem(itemName).map(i -> new MenuItemInfo(i.menuItem, i.number));
     }
 
     @Override

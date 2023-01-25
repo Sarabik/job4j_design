@@ -17,7 +17,7 @@ public class AddToRootAction implements UserAction {
     public boolean execute(Menu menu, Input input) {
         out.println("ADD ITEM TO MENU ROOT");
         String name = input.askStr("Enter name of new item: ");
-        menu.add(Menu.ROOT, name, Menu.DEFAULT_ACTION);
+        menu.add(Menu.ROOT, name, TodoApp.DEFAULT_ACTION);
         out.println("Item is added.");
         return true;
     }

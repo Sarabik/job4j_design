@@ -6,6 +6,7 @@ import java.util.List;
 public class TodoApp {
 
     private final Output output;
+    final static ActionDelegate DEFAULT_ACTION = () -> System.out.println("Some action");
 
     public TodoApp(Output output) {
         this.output = output;

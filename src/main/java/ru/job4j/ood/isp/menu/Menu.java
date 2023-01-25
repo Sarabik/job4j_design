@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 public interface Menu extends Iterable<Menu.MenuItemInfo> {
 
     String ROOT = null; /* Константа, указывающая, что нужно добавить элемент в корень */
-    ActionDelegate DEFAULT_ACTION = () -> System.out.println("Some action");
 
     boolean add(String parentName, String childName, ActionDelegate actionDelegate);
 
