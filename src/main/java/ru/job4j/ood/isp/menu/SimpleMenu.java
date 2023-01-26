@@ -9,10 +9,13 @@ public class SimpleMenu implements Menu {
     @Override
     public boolean add(String parentName, String childName, ActionDelegate actionDelegate) {
         boolean result = false;
+        if (findItem(childName).isPresent()) {
+            return result;
+        }
         if (Objects.equals(parentName, Menu.ROOT)) {
             result = rootElements.add(new SimpleMenuItem(childName, actionDelegate));
         } else {
-            if (findItem(childName).isEmpty() && findItem(parentName).isPresent()) {
+            if (findItem(parentName).isPresent()) {
                 result = findItem(parentName).get().menuItem.getChildren()
                         .add(new SimpleMenuItem(childName, actionDelegate));
             }
