@@ -15,8 +15,9 @@ public class SimpleMenu implements Menu {
         if (Objects.equals(parentName, Menu.ROOT)) {
             result = rootElements.add(new SimpleMenuItem(childName, actionDelegate));
         } else {
-            if (findItem(parentName).isPresent()) {
-                result = findItem(parentName).get().menuItem.getChildren()
+            Optional<ItemInfo> itemInfo = findItem(parentName);
+            if (itemInfo.isPresent()) {
+                result = itemInfo.get().menuItem.getChildren()
                         .add(new SimpleMenuItem(childName, actionDelegate));
             }
         }
